@@ -5,17 +5,17 @@ from django.contrib.auth.models import User
 
 class PostQuerySet(models.QuerySet):
 
-    def year(self, year):
-        posts_at_year = self.filter(published_at__year=year).\
-            order_by('published_at')
-        return posts_at_year
-
     def popular(self):
         popular_posts = self.annotate(likes_count=models.Count('likes')).\
             order_by('-likes_count')
         return popular_posts
 
     def fetch_with_comments_count(self):
+        # Использовать вместо простого
+        # annotate(comments_count=models.Count('comments')),
+        # если нужно также применить другой annotate
+        # (например, метод popular())
+        # для уменьшения нагрузки на БД
         post_ids = [post.id for post in self]
         posts_with_comments = Post.objects.filter(id__in=post_ids).\
             annotate(comments_count=models.Count('comments'))
