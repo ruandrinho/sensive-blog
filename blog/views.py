@@ -26,12 +26,12 @@ def serialize_post(post):
 
 
 def serialize_tag(tag, include_posts_count=False):
-    to_return = {
+    serialized_tag = {
         'title': tag.title
     }
     if include_posts_count:
-        to_return['posts_with_tag'] = tag.posts_count,
-    return to_return
+        serialized_tag['posts_with_tag'] = tag.posts_count,
+    return serialized_tag
 
 
 def index(request):
