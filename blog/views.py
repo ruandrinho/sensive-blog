@@ -30,7 +30,7 @@ def serialize_tag(tag, include_posts_count=False):
         'title': tag.title
     }
     if include_posts_count:
-        serialized_tag['posts_with_tag'] = tag.posts_count,
+        serialized_tag['posts_with_tag'] = tag.posts_count
     return serialized_tag
 
 
